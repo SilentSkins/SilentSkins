@@ -1,15 +1,95 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>SilentSkins - Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SilentSkins - 3D Skin Viewer</title>
   <style>
-    body { background-color: #111; color: white; text-align: center; font-family: Arial; }
-    a { display: block; margin: 20px; color: #00c853; text-decoration: none; font-size: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .skin-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .skin-box {
+      background: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      width: 90%;
+    }
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+    .download-btn {
+      margin-top: 10px;
+      background: #00c853;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome to SilentSkins</h1>
-  <a href="upload.html">Upload Skin</a>
-  <a href="skins.html">View Skins</a>
+  <h1>SilentSkins - 3D Preview</h1>
+  <div class="skin-container">
+    <div class="skin-box">
+      <canvas id="skin_viewer_1"></canvas>
+      <a href="skins/bloom.png" download><button class="download-btn">Download Bloom</button></a>
+    </div>
+    <div class="skin-box">
+      <canvas id="skin_viewer_2"></canvas>
+      <a href="skins/steve.png" download><button class="download-btn">Download Steve</button></a>
+    </div>
+  </div>
+
+  <script src="skinview3d.bundle.js"></script>
+  <script>
+    const viewer1 = new skinview3d.SkinViewer({
+      canvas: document.getElementById("skin_viewer_1"),
+      width: 300,
+      height: 400,
+      skin: "skins/bloom.png"
+    });
+    viewer1.controls.enableZoom = true;
+    viewer1.controls.enableRotate = true;
+    viewer1.animation = new skinview3d.WalkingAnimation();
+    viewer1.animation.speed = 1;
+    viewer1.animation.play();
+
+    const viewer2 = new skinview3d.SkinViewer({
+      canvas: document.getElementById("skin_viewer_2"),
+      width: 300,
+      height: 400,
+      skin: "skins/steve.png"
+    });
+    viewer2.controls.enableZoom = true;
+    viewer2.controls.enableRotate = true;
+    viewer2.animation = new skinview3d.WalkingAnimation();
+    viewer2.animation.speed = 1;
+    viewer2.animation.play();
+  </script>
 </body>
 </html>
