@@ -1,87 +1,15 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SilentSkins - Minecraft Skin Gallery</title>
+  <title>SilentSkins - Home</title>
   <style>
-    body {
-      background-color: #111;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 1rem;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
-    }
-    .card {
-      background-color: #222;
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 0 10px #000;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-    canvas {
-      width: 100%;
-      height: auto;
-    }
-    .download-btn {
-      background-color: #00c853;
-      color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      margin-top: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .download-btn:hover {
-      background-color: #00e676;
-    }
+    body { background-color: #111; color: white; text-align: center; font-family: Arial; }
+    a { display: block; margin: 20px; color: #00c853; text-decoration: none; font-size: 20px; }
   </style>
 </head>
 <body>
-  <h1>SilentSkins Gallery (3D Preview)</h1>
-  <div class="gallery">
-    <div class="card">
-      <canvas id="viewer1" width="300" height="400"></canvas>
-      <a href="skins/steve.png" download><button class="download-btn">Download</button></a>
-    </div>
-    <div class="card">
-      <canvas id="viewer2" width="300" height="400"></canvas>
-      <a href="skins/bloom.png" download><button class="download-btn">Download</button></a>
-    </div>
-  </div>
-
-  <script src="https://unpkg.com/skinview3d"></script>
-  <script>
-    function createViewer(canvasId, skinPath) {
-      const canvas = document.getElementById(canvasId);
-      const viewer = new skinview3d.SkinViewer({
-        canvas: canvas,
-        width: 300,
-        height: 400,
-        skin: skinPath
-      });
-      viewer.controls.enableZoom = false;
-      viewer.animation = new skinview3d.WalkingAnimation();
-      viewer.animation.speed = 1;
-      viewer.animation.play();
-    }
-
-    createViewer("viewer1", "skins/steve.png");
-    createViewer("viewer2", "skins/bloom.png");
-  </script>
+  <h1>Welcome to SilentSkins</h1>
+  <a href="upload.html">Upload Skin</a>
+  <a href="skins.html">View Skins</a>
 </body>
 </html>
