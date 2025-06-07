@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SilentSkins - Skins Gallery</title>
+  <style>
+    body { font-family: Arial; background: #111; color: white; padding: 20px; text-align: center; }
+    .skin-card { border: 1px solid #555; margin: 10px auto; padding: 10px; max-width: 300px; }
+    img { max-width: 100%; margin-top: 10px; }
+    .download-btn { background: #00c853; color: white; padding: 8px 15px; margin-top: 10px; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<h2>Minecraft Skins Gallery</h2>
+<div id="skinsContainer"></div>
+
+<script>
+let skins = JSON.parse(localStorage.getItem("skins")) || [];
+
+const container = document.getElementById("skinsContainer");
+
+skins.forEach((skin) => {
+  const div = document.createElement("div");
+  div.className = "skin-card";
+  div.innerHTML = `
+    <strong>${skin.name}</strong><br>
+    <img src="${skin.image}" alt="skin"><br>
+    <a href="${skin.image}" download><button class="download-btn">Download</button></a>
+  `;
+  container.appendChild(div);
+});
+</script>
+
+</body>
+</html>
