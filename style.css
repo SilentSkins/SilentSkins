@@ -1,0 +1,17 @@
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #1a1a1a;
+  color: white;
+}
+header {
+  padding: 1rem;
+  text-align: center;
+}
+#skinGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
