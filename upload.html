@@ -1,113 +1,32 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Upload Minecraft Skin - SilentSkins</title>
+  <title>Upload Skin - SilentSkins</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
-      margin: 0;
-      padding: 1rem;
-      text-align: center;
-    }
-    h2 {
-      color: #00ffaa;
-    }
-    input[type="file"], input[type="text"] {
-      margin: 1rem 0;
-      font-size: 1rem;
-      padding: 0.5rem;
-      border-radius: 6px;
-      width: 80%;
-      max-width: 300px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #00ffaa;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .preview {
-      margin-top: 1rem;
-    }
-    .skin-gallery {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .skin-card {
-      background-color: #1e1e1e;
-      padding: 0.5rem;
-      border-radius: 10px;
-      width: 120px;
-    }
-    .skin-card img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .skin-card p {
-      font-size: 0.8rem;
-      margin: 5px 0 0;
-    }
+    body { font-family: Arial; background-color: #111; color: white; padding: 20px; }
+    input, button { display: block; margin: 10px 0; padding: 10px; font-size: 16px; }
+    button { background-color: #00c853; border: none; color: white; cursor: pointer; }
   </style>
 </head>
 <body>
-  <h2>Upload Your Minecraft Skin</h2>
-  <input type="text" id="skinName" placeholder="Enter Skin Name" />
-  <br />
-  <input type="file" id="skinFile" accept="image/png" />
-  <br />
-  <button onclick="uploadSkin()">Upload</button>
-  <div class="preview" id="preview"></div>
-  <h3 style="margin-top: 3rem;">Uploaded Skins</h3>
-  <div class="skin-gallery" id="gallery"></div>
-  <script>
-    function uploadSkin() {
-      const fileInput = document.getElementById("skinFile");
-      const nameInput = document.getElementById("skinName").value.trim();
-      if (!fileInput.files[0] || !nameInput) {
-        alert("Please enter a skin name and select a PNG file.");
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const imageData = e.target.result;
-        let skins = JSON.parse(localStorage.getItem("userSkins")) || [];
-        skins.push({ name: nameInput, image: imageData });
-        localStorage.setItem("userSkins", JSON.stringify(skins));
-        alert("Skin uploaded successfully!");
-        showGallery();
-        fileInput.value = "";
-        document.getElementById("skinName").value = "";
-      };
-      reader.readAsDataURL(fileInput.files[0]);
-    }
-    function showGallery() {
-      const gallery = document.getElementById("gallery");
-      gallery.innerHTML = "";
-      const skins = JSON.parse(localStorage.getItem("userSkins")) || [];
-      skins.forEach(skin => {
-        const card = document.createElement("div");
-        card.className = "skin-card";
-        const img = document.createElement("img");
-        img.src = skin.image;
-        const p = document.createElement("p");
-        p.textContent = skin.name;
-        card.appendChild(img);
-        card.appendChild(p);
-        gallery.appendChild(card);
-      });
-    }
-    window.onload = showGallery;
-  </script>
+
+<h2>Upload Minecraft Skin</h2>
+
+<input type="text" id="skinName" placeholder="Skin name">
+<input type="text" id="skinURL" placeholder="Skin image URL (direct)">
+<button onclick="uploadSkin()">Upload</button>
+
+<script>
+function uploadSkin() {
+  const name = document.getElementById("skinName").value;
+  const image = document.getElementById("skinURL").value;
+
+  let skins = JSON.parse(localStorage.getItem("skins")) || [];
+  skins.push({ name, image });
+  localStorage.setItem("skins", JSON.stringify(skins));
+  alert("Skin uploaded!");
+}
+</script>
+
 </body>
 </html>
