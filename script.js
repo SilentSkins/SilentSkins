@@ -11,7 +11,7 @@ const bird = {
   y: 150,
   width: 34,
   height: 26,
-  gravity: 0.25,
+  gravity: 0.15,
   jump: 4.6,
   velocity: 0,
   draw() {
