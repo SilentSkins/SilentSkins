@@ -4,14 +4,14 @@
   <title>SilentSkins - Skins Gallery</title>
   <style>
     body { font-family: Arial; background: #111; color: white; padding: 20px; text-align: center; }
-    .skin-card { border: 1px solid #555; margin: 10px auto; padding: 10px; max-width: 320px; background-color: #1e1e1e; border-radius: 10px; }
-    img { max-width: 100%; margin-top: 10px; border-radius: 5px; }
+    .skin-card { border: 1px solid #555; margin: 10px auto; padding: 10px; max-width: 350px; background-color: #1e1e1e; border-radius: 10px; }
+    iframe { width: 200px; height: 300px; border: none; }
     .download-btn { background: #00c853; color: white; padding: 8px 15px; margin-top: 10px; border: none; cursor: pointer; border-radius: 5px; }
   </style>
 </head>
 <body>
 
-<h2>Minecraft Skins Gallery</h2>
+<h2>Minecraft Skins Gallery (3D Preview)</h2>
 <div id="skinsContainer"></div>
 
 <script>
@@ -28,7 +28,7 @@ skins.forEach((skin) => {
   div.className = "skin-card";
   div.innerHTML = `
     <strong>${skin.name}</strong><br>
-    <img src="${skin.image}" alt="skin preview"><br>
+    <iframe src="https://minecraftskinviewer.netlify.app/?skinUrl=${encodeURIComponent(skin.image)}" allowfullscreen></iframe><br>
     <a href="${skin.image}" download>
       <button class="download-btn">Download</button>
     </a>
