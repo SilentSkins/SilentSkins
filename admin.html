@@ -4,10 +4,8 @@
   <title>SilentSkins - Admin Panel</title>
   <style>
     body { font-family: Arial; background: #111; color: white; padding: 20px; }
-    .skin-card { border: 1px solid #555; margin: 10px 0; padding: 10px; text-align: center; }
-    button { background: red; color: white; border: none; padding: 5px 10px; margin: 5px; }
-    img { max-width: 100px; margin-top: 10px; }
-    .download-btn { background: #00c853; }
+    .skin-card { border: 1px solid #555; margin: 10px 0; padding: 10px; }
+    button { background: red; color: white; border: none; padding: 5px 10px; margin-right: 10px; }
   </style>
 </head>
 <body>
@@ -31,8 +29,7 @@ skins.forEach((skin, index) => {
   div.className = "skin-card";
   div.innerHTML = `
     <strong>${skin.name}</strong><br>
-    <img src="${skin.image}" alt="skin"><br>
-    <a href="${skin.image}" download class="download-btn"><button class="download-btn">Download</button></a>
+    <img src="${skin.image}" width="100"><br>
     <button onclick="deleteSkin(${index})">Delete</button>
   `;
   container.appendChild(div);
