@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SilentSkins - Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      margin: 0;
+      padding: 1rem;
+    }
+    header {
+      text-align: center;
+      padding: 1rem 0;
+    }
+    header h1 {
+      color: #00ffaa;
+      margin-bottom: 5px;
+    }
+    input[type="text"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 10px auto;
+      border-radius: 8px;
+      display: block;
+      font-size: 1rem;
+    }
+    .skin-gallery {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .skin-card {
+      background-color: #1e1e1e;
+      padding: 0.5rem;
+      border-radius: 10px;
+      width: 120px;
+      text-align: center;
+    }
+    .skin-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .skin-card p {
+      font-size: 0.85rem;
+      margin: 5px 0 0;
+      word-break: break-word;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    a {
+      color: #00ffaa;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SilentSkins</h1>
+    <p>Explore and Share Minecraft Skins</p>
+  </header>
+  <input type="text" id="searchInput" placeholder="Search skins..." onkeyup="filterSkins()" />
+  <div class="skin-gallery" id="gallery"></div>
+  <footer>
+    <p>&copy; 2025 SilentSkins | <a href="upload.html">Upload Skin</a></p>
+  </footer>
+  <script>
+    function showGallery() {
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = "";
+      const skins = JSON.parse(localStorage.getItem("userSkins")) || [];
+      if (skins.length === 0) {
+        gallery.innerHTML = "<p>No skins uploaded yet.</p>";
+        return;
+      }
+      skins.forEach((skin) => {
+        const card = document.createElement("div");
+        card.className = "skin-card";
+        card.setAttribute("data-name", skin.name.toLowerCase());
+        const img = document.createElement("img");
+        img.src = skin.image;
+        const name = document.createElement("p");
+        name.textContent = skin.name;
+        card.appendChild(img);
+        card.appendChild(name);
+        gallery.appendChild(card);
+      });
+    }
+    function filterSkins() {
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll(".skin-card");
+      cards.forEach((card) => {
+        const name = card.getAttribute("data-name");
+        card.style.display = name.includes(search) ? "block" : "none";
+      });
+    }
+    window.onload = showGallery;
+  </script>
+</body>
+</html>
