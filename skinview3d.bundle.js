@@ -1,1 +1,0 @@
-// skinview3d.bundle.js would go here - use official script from CDN or local
