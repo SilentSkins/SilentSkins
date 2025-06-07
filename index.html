@@ -4,92 +4,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SilentSkins - 3D Skin Viewer</title>
+  <title>SilentSkins - Minecraft Skin Gallery</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
+      background-color: #111;
       color: #fff;
+      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 1rem;
     }
     h1 {
-      margin: 20px 0;
       text-align: center;
+      margin-bottom: 2rem;
     }
-    .skin-container {
+    .gallery {
       display: flex;
       flex-direction: column;
+      gap: 2rem;
       align-items: center;
-      gap: 20px;
-      width: 100%;
-      max-width: 400px;
     }
-    .skin-box {
-      background: #1e1e1e;
-      padding: 15px;
+    .card {
+      background-color: #222;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      padding: 1rem;
+      box-shadow: 0 0 10px #000;
       width: 90%;
+      max-width: 400px;
+      text-align: center;
     }
     canvas {
-      width: 100% !important;
-      height: auto !important;
+      width: 100%;
+      height: auto;
     }
     .download-btn {
-      margin-top: 10px;
-      background: #00c853;
+      background-color: #00c853;
+      color: white;
+      padding: 0.5rem 1rem;
       border: none;
-      padding: 10px 20px;
+      margin-top: 1rem;
       border-radius: 5px;
-      color: #fff;
-      font-weight: bold;
       cursor: pointer;
-      width: 100%;
+      font-weight: bold;
+    }
+    .download-btn:hover {
+      background-color: #00e676;
     }
   </style>
 </head>
 <body>
-  <h1>SilentSkins - 3D Preview</h1>
-  <div class="skin-container">
-    <div class="skin-box">
-      <canvas id="skin_viewer_1"></canvas>
-      <a href="skins/bloom.png" download><button class="download-btn">Download Bloom</button></a>
+  <h1>SilentSkins Gallery (3D Preview)</h1>
+  <div class="gallery">
+    <div class="card">
+      <canvas id="viewer1" width="300" height="400"></canvas>
+      <a href="skins/steve.png" download><button class="download-btn">Download</button></a>
     </div>
-    <div class="skin-box">
-      <canvas id="skin_viewer_2"></canvas>
-      <a href="skins/steve.png" download><button class="download-btn">Download Steve</button></a>
+    <div class="card">
+      <canvas id="viewer2" width="300" height="400"></canvas>
+      <a href="skins/bloom.png" download><button class="download-btn">Download</button></a>
     </div>
   </div>
 
-  <script src="skinview3d.bundle.js"></script>
+  <script src="https://unpkg.com/skinview3d"></script>
   <script>
-    const viewer1 = new skinview3d.SkinViewer({
-      canvas: document.getElementById("skin_viewer_1"),
-      width: 300,
-      height: 400,
-      skin: "skins/bloom.png"
-    });
-    viewer1.controls.enableZoom = true;
-    viewer1.controls.enableRotate = true;
-    viewer1.animation = new skinview3d.WalkingAnimation();
-    viewer1.animation.speed = 1;
-    viewer1.animation.play();
+    function createViewer(canvasId, skinPath) {
+      const canvas = document.getElementById(canvasId);
+      const viewer = new skinview3d.SkinViewer({
+        canvas: canvas,
+        width: 300,
+        height: 400,
+        skin: skinPath
+      });
+      viewer.controls.enableZoom = false;
+      viewer.animation = new skinview3d.WalkingAnimation();
+      viewer.animation.speed = 1;
+      viewer.animation.play();
+    }
 
-    const viewer2 = new skinview3d.SkinViewer({
-      canvas: document.getElementById("skin_viewer_2"),
-      width: 300,
-      height: 400,
-      skin: "skins/steve.png"
-    });
-    viewer2.controls.enableZoom = true;
-    viewer2.controls.enableRotate = true;
-    viewer2.animation = new skinview3d.WalkingAnimation();
-    viewer2.animation.speed = 1;
-    viewer2.animation.play();
+    createViewer("viewer1", "skins/steve.png");
+    createViewer("viewer2", "skins/bloom.png");
   </script>
 </body>
 </html>
