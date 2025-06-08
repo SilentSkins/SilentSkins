@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SilentSkins</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e2f;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2c2c3e;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 1rem;
+    }
+
+    .search-bar input {
+      width: 85%;
+      padding: 0.7rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .skins-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .skin-card {
+      background-color: #2e2e42;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .skin-card:hover {
+      transform: scale(1.05);
+    }
+
+    .skin-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .download-btn {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,0.7);
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem;
+      display: none;
+    }
+
+    .skin-card:hover .download-btn {
+      display: blo
