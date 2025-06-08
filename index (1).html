@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SilentSkins - Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1e2f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #2e2e42;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00ffcc;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #00ffcc;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 10px;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .search-bar {
+      margin-top: 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container" id="auth-container">
+    <h2 id="form-title">Login to SilentSkins</h2>
+    <div id="form">
+      <input type="text" placeholder="Username" id="username" />
+      <input type="password" placeholder="Password" id="password" />
+      <button onclick="login()">Login</button>
+    </div>
+    <div class="toggle" onclick="toggleForm()">Don't have an account? Signup</div>
+
+    <div class="search-bar" id="search-bar" style="display: none;">
+      <input type="text" placeholder="Search Minecraft Skins..."/>
+    </div>
+  </div>
+
+  <script>
+    let isLogin = true;
+
+    function toggleForm() {
+      const form = document.getElementById('form');
+      const title = document.getElementById('form-title');
+      const toggleText = document.querySelector('.toggle');
+
+      if (isLogin) {
+        title.innerText = "Signup for SilentSkins";
+        form.innerHTML = `
+          <input type="text" placeholder="Username" id="username" />
+          <input type="email" placeholder="Email" id="email" />
+          <input type="password" placeholder="Password" id="password" />
+          <button onclick="signup()">Signup</button>
+        `;
+        toggleText.innerText = "Already have an account? Login";
+      } else {
+        title.innerText = "Login to S
